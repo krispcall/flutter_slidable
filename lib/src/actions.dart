@@ -138,8 +138,11 @@ class SlidableAction extends StatelessWidget {
     this.autoClose = _kAutoClose,
     required this.onPressed,
     this.icon,
+    this.iconColor,
+    this.iconSize,
     this.spacing = 4,
     this.label,
+    this.labelStyle,
     this.borderRadius = BorderRadius.zero,
     this.padding,
   })  : assert(flex > 0),
@@ -154,6 +157,12 @@ class SlidableAction extends StatelessWidget {
 
   /// {@macro slidable.actions.foregroundColor}
   final Color? foregroundColor;
+
+  /// Icon Color
+  final Color? iconColor;
+
+  /// Icon Size
+  final double? iconSize;
 
   /// {@macro slidable.actions.autoClose}
   final bool autoClose;
@@ -172,11 +181,16 @@ class SlidableAction extends StatelessWidget {
   /// A label to display below the [icon].
   final String? label;
 
+  /// Text Syle
+  final TextStyle? labelStyle;
+
   /// Padding of the OutlinedButton
   final BorderRadius borderRadius;
 
   /// Padding of the OutlinedButton
   final EdgeInsets? padding;
+
+  /// Icon Padding
 
   @override
   Widget build(BuildContext context) {
@@ -184,7 +198,11 @@ class SlidableAction extends StatelessWidget {
 
     if (icon != null) {
       children.add(
-        Icon(icon),
+        Icon(
+          icon,
+          size: iconSize ?? 20,
+          color: iconColor ?? Colors.white,
+        ),
       );
     }
 
@@ -199,6 +217,7 @@ class SlidableAction extends StatelessWidget {
         Text(
           label!,
           overflow: TextOverflow.ellipsis,
+          style: labelStyle,
         ),
       );
     }
